@@ -3,4 +3,6 @@ project(sd_1_lista)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(sd_1_lista main.cpp)
+add_executable(sd_1_lista main.cpp
+        ArrayList.cpp
+        ArrayList.h)
