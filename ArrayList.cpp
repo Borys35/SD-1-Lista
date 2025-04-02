@@ -2,26 +2,30 @@
 // Created by borys on 21/03/2025.
 //
 
-#include "ArrayList.h"
+#include "ArrayList.hpp"
 
-ArrayList::ArrayList() {
+template<class T>
+ArrayList<T>::ArrayList() {
     size = 0;
     max_size = 4;
-    array = new int[max_size];
+    array = new T[max_size];
     for (int i = 0; i < max_size; i++) {
         array[i] = 0;
     }
 }
 
-ArrayList::~ArrayList() {
+template<class T>
+ArrayList<T>::~ArrayList() {
     delete[] array;
 }
 
-int ArrayList::count() {
+template<class T>
+T ArrayList<T>::count() {
     return size;
 }
 
-void ArrayList::increase_size() {
+template<class T>
+void ArrayList<T>::increase_size() {
     max_size *= 2;
     int *temp = new int[max_size];
     for (int i = 0; i < size - 1; i++) {
@@ -31,8 +35,8 @@ void ArrayList::increase_size() {
     array = temp;
 }
 
-
-void ArrayList::push_back(int value) {
+template<class T>
+void ArrayList<T>::push_back(T value) {
     size++;
     if (size > max_size) {
         increase_size();
@@ -40,7 +44,8 @@ void ArrayList::push_back(int value) {
     array[size - 1] = value;
 }
 
-void ArrayList::push(int value) {
+template<class T>
+void ArrayList<T>::push_front(T value) {
     size++;
     if (size > max_size) {
         increase_size();
@@ -51,7 +56,8 @@ void ArrayList::push(int value) {
     array[0] = value;
 }
 
-void ArrayList::insert(int value, unsigned int index) {
+template<class T>
+void ArrayList<T>::insert(T value, T index) {
     size++;
     if (size > max_size) {
         increase_size();
@@ -62,21 +68,23 @@ void ArrayList::insert(int value, unsigned int index) {
     array[index] = value;
 }
 
-int ArrayList::remove(unsigned int index) {
+template<class T>
+T ArrayList<T>::remove(T index) {
     size--;
-    int v = array[index];
-    for (unsigned int i = index; i < size - 1; i++) {
+    T v = array[index];
+    for (int i = index; i < size - 1; i++) {
         array[i] = array[i + 1];
     }
     return v;
 }
 
-int ArrayList::get(int index) {
+template<class T>
+T ArrayList<T>::get(T index) {
     if (index > size - 1 || index < 0) {
         return -1;
     }
     return array[index];
 }
 
-
+template class ArrayList<int>;
 
