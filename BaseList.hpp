@@ -14,8 +14,8 @@ public:
 
     virtual void push_front(T value) = 0;
     virtual void push_back(T value) = 0;
-    virtual void insert(T value, T index) = 0;
-    virtual T remove(T index) = 0;
-    virtual T get(T index) = 0;
-    virtual T count() = 0;
+    virtual void insert(T value, int index) = 0;
+    virtual T remove(int index) = 0;
+    virtual T get(int index) = 0;
+    virtual int count() = 0;
 };

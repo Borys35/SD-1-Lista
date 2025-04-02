@@ -15,10 +15,10 @@ public:
     ~ArrayList();
     void push_front(T value) override;
     void push_back(T value) override;
-    void insert(T value, T index) override;
-    T remove(T index) override;
-    T get(T index) override;
-    T count() override;
+    void insert(T value, int index) override;
+    T remove(int index) override;
+    T get(int index) override;
+    int count() override;
 
 private:
     int* array;

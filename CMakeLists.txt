@@ -7,4 +7,5 @@ add_executable(sd_1_lista main.cpp
         ArrayList.cpp
         ArrayList.hpp
         DoublyLinkedList.hpp
-        BaseList.hpp)
+        BaseList.hpp
+        DoublyLinkedList.cpp)

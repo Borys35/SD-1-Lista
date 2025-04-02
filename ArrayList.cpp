@@ -20,7 +20,7 @@ ArrayList<T>::~ArrayList() {
 }
 
 template<class T>
-T ArrayList<T>::count() {
+int ArrayList<T>::count() {
     return size;
 }
 
@@ -57,7 +57,7 @@ void ArrayList<T>::push_front(T value) {
 }
 
 template<class T>
-void ArrayList<T>::insert(T value, T index) {
+void ArrayList<T>::insert(T value, int index) {
     size++;
     if (size > max_size) {
         increase_size();
@@ -69,7 +69,7 @@ void ArrayList<T>::insert(T value, T index) {
 }
 
 template<class T>
-T ArrayList<T>::remove(T index) {
+T ArrayList<T>::remove(int index) {
     size--;
     T v = array[index];
     for (int i = index; i < size - 1; i++) {
@@ -79,7 +79,7 @@ T ArrayList<T>::remove(T index) {
 }
 
 template<class T>
-T ArrayList<T>::get(T index) {
+T ArrayList<T>::get(int index) {
     if (index > size - 1 || index < 0) {
         return -1;
     }
