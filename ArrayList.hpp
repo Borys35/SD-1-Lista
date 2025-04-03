@@ -1,12 +1,6 @@
-//
-// Created by borys on 21/03/2025.
-//
+#pragma once
 
-#ifndef ARRAYLIST_H
-#define ARRAYLIST_H
 #include "BaseList.hpp"
-
-#endif //ARRAYLIST_H
 
 template<class T>
 class ArrayList : public BaseList<T> {
@@ -16,6 +10,8 @@ public:
     void push_front(T value) override;
     void push_back(T value) override;
     void insert(T value, int index) override;
+    T remove_front() override;
+    T remove_back() override;
     T remove(int index) override;
     T get(int index) override;
     int count() override;

@@ -13,25 +13,55 @@ DoublyLinkedList<T>::~DoublyLinkedList() = default;
 
 template<class T>
 void DoublyLinkedList<T>::push_back(T value) {
-    DoublyLinkedListNode<T> node;
-    node.value = value;
-    node.prev = this.tail;
-    node.next = nullptr;
-    this.tail->next = &node;
+    auto *node = new DoublyLinkedListNode<T>;
+    node->value = value;
+    node->prev = this->tail;
+    node->next = nullptr;
+    if (this->tail == nullptr) {
+        this->head = node;
+        this->tail = node;
+    } else {
+        this->tail->next = node;
+        this->tail = node;
+    }
 }
 
 template<class T>
 void DoublyLinkedList<T>::push_front(T value) {
-    DoublyLinkedListNode<T> node;
-    node.value = value;
-    node.prev = nullptr;
-    node.next = this.head;
-    this.head->prev = &node;
+    auto *node = new DoublyLinkedListNode<T>;
+    node->value = value;
+    node->next = this->head;
+    node->prev = nullptr;
+    if (this->head == nullptr) {
+        this->head = node;
+        this->tail = node;
+    } else {
+        this->head->prev = node;
+        this->head = node;
+    }
 }
 
 template<class T>
 void DoublyLinkedList<T>::insert(T value, int index) {
+    if (index == 0)
+        push_front(value);
 
+    DoublyLinkedListNode<T> *curNode = this->head;
+    for (int i = 0; i < index; i++) {
+        if (head->next != nullptr) {
+            curNode = head->next;
+            if (i == index - 1) {
+                DoublyLinkedListNode<T> *newNode = nullptr;
+                newNode->value = value;
+                newNode->prev = curNode->prev;
+                newNode->next = curNode;
+                curNode->prev->next = newNode;
+                curNode->prev = newNode;
+            }
+        } else {
+            break;
+        }
+    }
 }
 
 template<class T>
@@ -41,11 +71,21 @@ T DoublyLinkedList<T>::remove(int index) {
 
 template<class T>
 T DoublyLinkedList<T>::get(int index) {
-    return (head + index)->value;
+    if (index == 0)
+        return this->head->value;
+
+    DoublyLinkedListNode<T> *curNode = this->head;
+    for (int i = 0; i < index; i++) {
+        curNode = curNode->next;
+    }
+
+    return curNode->value;
 }
 
 template<class T>
 int DoublyLinkedList<T>::count() {
     return 0;
 }
+
+template class DoublyLinkedList<int>;
 

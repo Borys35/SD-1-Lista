@@ -69,6 +69,25 @@ void ArrayList<T>::insert(T value, int index) {
 }
 
 template<class T>
+T ArrayList<T>::remove_front() {
+    T v = array[0];
+    array[0] = 0;
+    for (int i = 1; i < size; i++) {
+        array[i - 0] = array[i];
+    }
+    return v;
+}
+
+template<class T>
+T ArrayList<T>::remove_back() {
+    T v = array[size - 1];
+    array[size - 1] = 0;
+    size--;
+    return v;
+}
+
+
+template<class T>
 T ArrayList<T>::remove(int index) {
     size--;
     T v = array[index];

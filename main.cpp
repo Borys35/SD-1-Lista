@@ -1,21 +1,28 @@
 #include <iostream>
 
 #include "ArrayList.hpp"
+#include "DoublyLinkedList.hpp"
 
 // C++20
 int main() {
     std::cout<<"Hello\n";
+    DoublyLinkedList linkedList = DoublyLinkedList<int>();
     ArrayList arrayList = ArrayList<int>();
-    int n = 100;
-    clock_t start = clock();
+
+    //linkedList.push_back(5);
+
+    int n = 10;
     for (int i = 0; i < n; i++) {
-        arrayList.push_back(i);
+        linkedList.push_front(i);
     }
-    clock_t end = clock() - start;
-    std::cout<<"Time elapsed: "<<(double)(end) / CLOCKS_PER_SEC<<"s\n";
+
     std::cout<<"[ ";
     for (int i = 0; i < n; i++) {
-        std::cout<<arrayList.get(i)<<", ";
+        std::cout<<linkedList.get(i)<<", ";
     }
-    std::cout<<" ]";
+    std::cout<<"]\n";
+
+    // std::cout<<linkedList.get(10);
+
+    return 0;
 }

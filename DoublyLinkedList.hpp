@@ -1,18 +1,12 @@
-//
-// Created by borys on 02/04/2025.
-//
+#pragma once
 
-#ifndef DOUBLYLINKEDLIST_H
-#define DOUBLYLINKEDLIST_H
 #include "BaseList.hpp"
 
-#endif //DOUBLYLINKEDLIST_H
-
-template<class T>
-struct DoublyLinkedListNode<T> {
+template<typename T>
+struct DoublyLinkedListNode {
     T value;
-    DoublyLinkedListNode& next;
-    DoublyLinkedListNode& prev;
+    DoublyLinkedListNode *next;
+    DoublyLinkedListNode *prev;
 };
 
 template<class T>
@@ -28,6 +22,6 @@ public:
     int count() override;
 
 private:
-    DoublyLinkedList& head;
-    DoublyLinkedList& tail;
+    DoublyLinkedListNode<T> *head;
+    DoublyLinkedListNode<T> *tail;
 };
