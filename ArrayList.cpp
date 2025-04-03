@@ -70,6 +70,10 @@ void ArrayList<T>::insert(T value, int index) {
 
 template<class T>
 T ArrayList<T>::remove_front() {
+    if (size == 0) {
+        // error
+        return 0;
+    }
     T v = array[0];
     array[0] = 0;
     for (int i = 1; i < size; i++) {
@@ -80,6 +84,10 @@ T ArrayList<T>::remove_front() {
 
 template<class T>
 T ArrayList<T>::remove_back() {
+    if (size == 0) {
+        // error
+        return 0;
+    }
     T v = array[size - 1];
     array[size - 1] = 0;
     size--;

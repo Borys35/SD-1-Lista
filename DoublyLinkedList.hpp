@@ -17,6 +17,8 @@ public:
     void push_front(T value) override;
     void push_back(T value) override;
     void insert(T value, int index) override;
+    T remove_front() override;
+    T remove_back() override;
     T remove(int index) override;
     T get(int index) override;
     int count() override;
@@ -24,4 +26,5 @@ public:
 private:
     DoublyLinkedListNode<T> *head;
     DoublyLinkedListNode<T> *tail;
+    int size = 0;
 };
