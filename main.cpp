@@ -36,17 +36,7 @@ int main() {
 
     std::cout<<"Struktury Danych - Listy\n";
 
-    DoublyLinkedList linkedList = DoublyLinkedList<int>();
-    ArrayList arrayList = ArrayList<int>();
-
     int sizes[8] = {5000, 8000, 10000, 16000, 20000, 40000, 60000, 100000};
-
-    int arraySize = 10;
-    int *baseArray = new int[arraySize];
-    fillArray(baseArray, arraySize);
-    arrayToList(arraySize, baseArray, [&](int value) { linkedList.push_back(value); });
-    arrayToList(arraySize, baseArray, [&](int value) { arrayList.push_back(value); });
-    delete [] baseArray;
 
     // naglowki dla tabeli
     file << "no.,size,operation,array list,doubly linked list\n";
@@ -57,29 +47,31 @@ int main() {
         // ilosc testow na jedna operacje
         for (int j = 0; j < 100; j++) {
             file << j + 1 << "," << size << "," << "push_back" << ",";
+
+            ArrayList arrayList = ArrayList<int>();
+            DoublyLinkedList doublyLinkedList = DoublyLinkedList<int>();
+            int *baseArray = new int[size];
+            fillArray(baseArray, size);
+            arrayToList(size, baseArray, [&](int value) { arrayList.push_back(value); });
+            arrayToList(size, baseArray, [&](int value) { doublyLinkedList.push_back(value); });
+
             auto t1 = Clock::now();
-            arrayList.insert(500, 300);
+            arrayList.push_back(500);
             auto t2 = Clock::now();
             long long duration = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
 
             file << duration << ",";
 
-            // to samo dla innych typow list
+            t1 = Clock::now();
+            doublyLinkedList.push_back(500);
+            t2 = Clock::now();
+            duration = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+
             file << duration << "\n";
+
+            delete [] baseArray;
         }
     }
-
-    // std::cout<<"[ ";
-    // for (int i = 0; i < 10; i++) {
-    //     std::cout<<linkedList.get(i)<<", ";
-    // }
-    // std::cout<<"]\n";
-    //
-    // std::cout<<"[ ";
-    // for (int i = 0; i < 10; i++) {
-    //     std::cout<<arrayList.get(i)<<", ";
-    // }
-    // std::cout<<"]\n";
 
     return 0;
 }
